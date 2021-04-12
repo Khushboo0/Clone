@@ -1,17 +1,20 @@
 const express = require('express');
 const router = express.Router();
 
-const{signup,signin,signout}=require('../controllers/user');
-// const {userSignupValidator}=require("../validator")
+const{userByID}=require('../controllers/user');
 
-router.post('/signup',signup);
-router.post('/signin',signin);
-router.get('/signout',signout);
+const{requireSignin,isAuth,isAdmin}=require('../controllers/auth');
 
-// router.get('/',(req,res))
-// =>{
-    // res.send('hello from user node')
 
-// });
+//isAuth mmethod make sure that agr kisi doosre ki id bhi ho toh uski sari details ya panel hum access na kar paye
+router.get('/secret/:userId',requireSignin,isAuth,isAdmin,(req,res)=>{
+    res.json({
+        user: req.profile
+    });
+});
+
+// router parameter will check if the id of the usder exist and then it will the user by id method which is going to be defined in controllers
+
+router.param('userId',userByID);
 
 module.exports=router;

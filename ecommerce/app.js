@@ -11,7 +11,9 @@ const expressValidator = require('express-validator');
 require('dotenv').config();
 
 //import routes
-const UserRoutes =  require ('./routes/user');
+const authRoutes =  require ('./routes/auth');
+const userRoutes =  require ('./routes/user');
+
 
 //app
 const app= express();
@@ -42,7 +44,8 @@ app.use(cookieParser());
 
 
 //routes middleware
-app.use('/api',UserRoutes);
+app.use('/api',authRoutes);
+app.use('/api',userRoutes);
 
 
 
