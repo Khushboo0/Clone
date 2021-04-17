@@ -12,3 +12,25 @@ exports.userByID = (req,res,next,id)=>{
 
     });
 };
+
+
+
+exports.read = (req,res)=>{
+    req.profile.hashed_password = undefined;
+    req.profile.salt = undefined;
+    return res.json(req.profile);
+};
+
+
+exports.update =(req,res) =>{
+    User.findOneAndUpdate({_id:req.profile._id},{$set:req.body},{new:true},(err,user)=>{
+        if(err){
+            return res.status(400).json({
+                error: 'Not auuthorized'
+            })
+        }
+        req.profile.hashed_password = undefined;
+        req.profile.salt = undefined;
+        return res.json(user)
+    });
+};
