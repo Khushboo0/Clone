@@ -28,8 +28,8 @@ const Signin = () => {
         event.preventDefault();
         setValues({...value,error: false,loading:true});
         signin({email,password}).then(data=>{
-            if(data.error){
-                setValues({...value,error: data.error,loading:false});
+            if(data.err){
+                setValues({...value,error: data.err,loading:false});
             }
             else{
                 authenticate(data,()=>{
