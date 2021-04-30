@@ -67,7 +67,7 @@ const Menu = ({history})=>(
                 <Link className="nav-link"style={{cursor:'pointer',color:'#ffffff'}} onClick={()=>signout(()=>{
                     history.push('/');
                 })}>
-                    signout
+                    Signout
                 </Link>
             </li>
 
