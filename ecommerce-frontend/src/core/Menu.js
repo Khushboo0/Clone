@@ -1,6 +1,8 @@
 import React,{Fragment} from 'react';
 import {Link,withRouter} from 'react-router-dom';
-import {signout,isAuthenticated} from '../auth'
+import {signout,isAuthenticated} from '../auth/index'
+
+// console.log(isAuthenticated());
 
 
 // somewhere using fragment instead of div for thr align ment you switch between them to see the difference
@@ -24,6 +26,22 @@ const Menu = ({history})=>(
                     Home
                 </Link>
             </li>
+            {isAuthenticated() && isAuthenticated().user.role===0 &&(
+            
+            <li className="nav-item">
+                <Link className="nav-link" style={isActive(history,'/user/dashboard')} to="/user/dashboard">
+                    Dashboard
+                </Link>
+            </li>
+            )}
+            {isAuthenticated() && isAuthenticated().user.role===1 &&(
+            
+            <li className="nav-item">
+                <Link className="nav-link" style={isActive(history,'/admin/dashboard')} to="/admin/dashboard">
+                    Dashboard
+                </Link>
+            </li>
+            )}
             {!isAuthenticated() && (
                 <Fragment>
                     <li className="nav-item">
@@ -33,7 +51,7 @@ const Menu = ({history})=>(
             </li>
             <li className="nav-item">
                 <Link className="nav-link"style={isActive(history,'/signin')} to="/signin">
-                    Signin
+                    Signin 
                 </Link>
             </li>
 

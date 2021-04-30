@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
-import {Link, Redirect} from "react-router-dom";
-import {signin,authenticate} from "../auth"
+import {Redirect} from "react-router-dom";
+import {signin,authenticate,isAuthenticated} from "../auth"
 import Layout from "../core/Layout";
 
 const Signin = () => {
@@ -13,6 +13,8 @@ const Signin = () => {
     });
 
     const {email,password,error,loading,redirectToReferrer}=value
+
+    const {user}= isAuthenticated()
     // higher order function (fucn returning func) name is just like self uch bhi naam rakh sakte
 
     const handleChange = name => event =>{
@@ -80,9 +82,16 @@ const Signin = () => {
 
     const redirectUser=()=>{
         if(redirectToReferrer){
+            if(user && user.role===1){
+                return <Redirect to="/admin/dashboard"/>
+            }else{
+                return <Redirect to="/user/dashboard" />
+            }
+        }
+        if(isAuthenticated()){
             return <Redirect to="/" />
         }
-    }
+    };
     return (
         (
             <Layout title="Signin Page" description="Node Ecom Signin" className="container col-md-8 offset-md-2">

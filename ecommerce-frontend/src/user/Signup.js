@@ -72,7 +72,7 @@ const Signup = () => {
     );
     const showSuccess = ()=>(
         <div className="alert alert-info" style={{display:success?'':'none'}}>
-            New user is created. Please signin
+            New user is created. Please <Link className="nav-link" to="/signin">Signin</Link>
         </div>
 
     );
