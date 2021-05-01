@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const{create,productByID,read,remove,update,list,listRelated,listCategories,listBySearch,photo}=require('../controllers/product');
+const{create,productByID,read,remove,update,list,listRelated,listCategories,listBySearch,photo,listSearch}=require('../controllers/product');
 const{requireSignin,isAuth,isAdmin}=require('../controllers/auth');
 const{userByID}=require('../controllers/user');
 
@@ -37,6 +37,11 @@ router.get('/products/categories',listCategories);
 
 // route - make sure its post
 router.post("/products/by/search", listBySearch);
+
+//specific product searching
+router.get("/products/search", listSearch);
+
+
 
 
 

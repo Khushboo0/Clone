@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "./Layout";
 import { getProduct } from "./apiCore";
 import Card from "./Card";
+import Search from "./Search";
 
 const Home = () => {
   const [productsBySell, setProductsBySell] = useState([]);
@@ -34,6 +35,7 @@ const Home = () => {
   }, []);
   return (
     <Layout title="Home Page" description="Node Ecom" className="container-fluid">
+      <Search/>
       <label className="btn btn-warning">
         <h2 >Best Sellers</h2>
       </label>
