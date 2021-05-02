@@ -1,4 +1,5 @@
-//all method that will call backend method
+//make requests to backenf method
+
 import { API } from '../config';
 import queryString from "query-string";
 
